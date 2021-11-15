@@ -1,6 +1,6 @@
 # PyLexis
 
-`PyLexis` is a tool to easily plot Lexis Diagrams within Python. It is based on [`seaborn`](https://seaborn.pydata.org/) and inspirated in 
+`PyLexis` is a tool to easily plot Lexis Diagrams within Python. It is based on [`matplotlib`](https://matplotlib.org/) and inspirated in 
 [LexisPlotR](https://github.com/ottlngr/LexisPlotR).
 
 ### What is a Lexis Diagram?
