@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-def pylexis(year_start, year_end, age_start, age_end):
+def create(year_start, year_end, age_start, age_end):
     """ Plot a basic Lexis Diagram """
 
     # plot
