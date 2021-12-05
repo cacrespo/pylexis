@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name="pylexis",
     version="0.0.1",
-    author="Carlos A. Crespo,
+    author="Carlos A. Crespo",
     author_email="lvccrespo@gmail.com",
     description="Quickly and easily draw basic Lexis diagrams",
     long_description=long_description,
