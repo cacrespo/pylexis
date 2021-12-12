@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 class diagram():
     """ Basic Lexis Diagram """
 
-    def __init__(self, year_start, year_end, age_start, age_end):
+    def __init__(self, year_start: int, year_end: int, age_start: int, age_end: int):
         self.year_start = year_start
         self.year_end = year_end
         self.age_start = age_start
@@ -14,6 +14,21 @@ class diagram():
         self.xlabel = x_label
         self.ylabel = y_label
         self.title = title
+
+    def lexis_age(self, age:int, colour:str):
+        """ Highlight a certain age in the grid """
+        #TODO
+
+    def lexis_year(self, year:int, colour:str):
+        """ Highlight a certain year in the grid """
+        #TODO
+
+    def lexis_cohort(self, cohort:int, colour:str):
+        """ Highlight a certain cohort in the grid """
+        #TODO
+
+    def load_data(self, data:list):
+        #TODO
 
     def plot(self):
         fig, ax = plt.subplots()
