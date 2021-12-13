@@ -13,3 +13,7 @@ venv.bak/
 
 # Another stuff
 __pycache__/
+build/
+dist/
+*.egg-info/
+test/
