@@ -10,6 +10,8 @@ class diagram():
         self.age_start = age_start
         self.age_end = age_end
 
+        self.titles()
+
     def titles(self, x_label="Year", y_label="Age", title="Lexis Diagram"):
         self.xlabel = x_label
         self.ylabel = y_label
@@ -17,18 +19,18 @@ class diagram():
 
     def lexis_age(self, age:int, colour:str):
         """ Highlight a certain age in the grid """
-        #TODO
+        pass #TODO
 
     def lexis_year(self, year:int, colour:str):
         """ Highlight a certain year in the grid """
-        #TODO
+        pass #TODO
 
     def lexis_cohort(self, cohort:int, colour:str):
         """ Highlight a certain cohort in the grid """
-        #TODO
+        pass #TODO
 
     def load_data(self, data:list):
-        #TODO
+        pass #TODO
 
     def plot(self):
         fig, ax = plt.subplots()
