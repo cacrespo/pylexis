@@ -9,3 +9,9 @@
 (such as births or deaths) that occur to individuals belonging to different cohorts. Calendar time is usually represented on the horizontal axis, while 
 age is represented on the vertical axis. (<https://en.wikipedia.org/wiki/Lexis_diagram>)
 
+### Installation
+
+### Using PyLexis
+
+### FAQ
+
