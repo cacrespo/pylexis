@@ -9,16 +9,15 @@ class diagram():
         self.year_end = year_end
         self.age_start = age_start
 
-        self.fig, self.ax = plt.subplots()
+        self.fig, self.ax = plt.subplots(figsize=(year_end - year_start, age_end - age_start))
         self.ax.set(xlim=(year_start, year_end), xticks=range(year_start, year_end+1),
                     ylim=(age_start, age_end), yticks=range(age_start, age_end+1))
 
         # grid
         plt.grid()
 
-        for i in range(year_start, year_end):
+        for i in range(year_start - age_end, year_end):
             plt.axline( (i, age_start), (i + 1, age_start + 1), linewidth=0.3, color='gray')
-            plt.axline( (year_start, i - year_start), (year_start + 1, i - year_start + 1), linewidth=0.3, color='gray')
 
         self.titles()
 
