@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 
-class diagram():
+class Diagram():
     """ Basic Lexis Diagram """
 
     def __init__(self, year_start: int, year_end: int, age_start: int, age_end: int):
