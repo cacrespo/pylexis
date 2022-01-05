@@ -13,7 +13,7 @@ age is represented on the vertical axis. (<https://en.wikipedia.org/wiki/Lexis_d
 
 ### Using PyLexis
 
-First import the package and create a **diagram** object with the followings arguments:
+First import the package and create a **diagram** object with the following arguments:
 - initial year
 - final year
 - first age
@@ -33,7 +33,7 @@ Then you have a few methods to interact with the graph:
         Parameters
         ----------
         target: {'age', 'year' or 'cohort'}
-        value : int with the value of the _target_ selected.
+        value : int with the value of the target selected.
         color: str with the colour to fill.
 
 **Diagram.titles(x_label, y_label, title)**
@@ -41,8 +41,6 @@ Then you have a few methods to interact with the graph:
 **Diagram.add_births(year, value)**
 
 **Diagram.add_deaths(year, value)**
-
-**Diagram.add_births(year, value)**
 
  
 ### FAQ
