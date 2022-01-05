@@ -27,6 +27,7 @@ diagram = pylexis.diagram(1910, 1920, 0, 10)
 Then you have a few methods to interact with the graph:
 
 **Diagram.lexis_fill(target, value, color)**
+
         Highlight a certain age, year or cohort in the grid.
 
         Parameters
@@ -35,7 +36,7 @@ Then you have a few methods to interact with the graph:
         value : int with the value of the _target_ selected.
         color: str with the colour to fill.
 
-***Diagram.titles(x_label, y_label, title)**
+**Diagram.titles(x_label, y_label, title)**
 
 **Diagram.add_births(year, value)**
 
