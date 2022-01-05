@@ -9,16 +9,15 @@ class diagram():
         self.year_end = year_end
         self.age_start = age_start
 
-        self.fig, self.ax = plt.subplots()
+        self.fig, self.ax = plt.subplots(figsize=(year_end - year_start, age_end - age_start))
         self.ax.set(xlim=(year_start, year_end), xticks=range(year_start, year_end+1),
                     ylim=(age_start, age_end), yticks=range(age_start, age_end+1))
 
         # grid
         plt.grid()
 
-        for i in range(year_start, year_end):
+        for i in range(year_start - age_end, year_end):
             plt.axline( (i, age_start), (i + 1, age_start + 1), linewidth=0.3, color='gray')
-            plt.axline( (year_start, i - year_start), (year_start + 1, i - year_start + 1), linewidth=0.3, color='gray')
 
         self.titles()
 
@@ -50,5 +49,28 @@ class diagram():
                             (self.age_start - 1, _range - 1),
                             color=color, alpha=0.2)
 
-    # def load_data(self, data:list):
-        # pass #TODO
+    def add_births(self, year: int, value: int):
+        pad = ((9 - len(str(value))) / 9) / 2 # to center up to 9 digits
+        plt.text(year + pad, 0, value)
+
+    def add_deaths(self, cohort: int, year: int, age: int, value: int):
+        pad = ((4 - len(str(value))) / 4) / 2
+        if (year - cohort) - age == 1:
+            plt.text(year + pad,
+                     age + 0.5,
+                     value,
+                     fontsize = 12)
+
+        elif (year - cohort) - age == 0:
+            plt.text(year + 0.5,
+                     age + 0.3,
+                     value,
+                     fontsize = 12)
+        else:
+            print(f"""Invalid data:
+            cohort: {cohort}
+            year: {year}
+            age: {age}""")
+
+
+    #def load_data(self, data:list):
