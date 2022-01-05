@@ -13,21 +13,23 @@ age is represented on the vertical axis. (<https://en.wikipedia.org/wiki/Lexis_d
 
 ### Using PyLexis
 
-First import the package and create a **diagram** object with the following arguments:
+First import the package and create a **Diagram** object with the following arguments:
 - initial year
 - final year
 - first age
 - last age
 
-```
+``` py
 import pylexis
-diagram = pylexis.diagram(1910, 1920, 0, 10)
+diagram = pylexis.Diagram(1910, 1920, 0, 10)
 ```
+![](docs/images/basic_grid.png)
 
 Then you have a few methods to interact with the graph:
 
-**Diagram.lexis_fill(target, value, color)**
-
+``` py
+Diagram.lexis_fill(target, value, color)
+```
         Highlight a certain age, year or cohort in the grid.
 
         Parameters
@@ -36,13 +38,16 @@ Then you have a few methods to interact with the graph:
         value : int with the value of the target selected.
         color: str with the colour to fill.
 
-**Diagram.titles(x_label, y_label, title)**
+``` py
+Diagram.titles(x_label, y_label, title)
+```
+``` py
+Diagram.add_births(year, value)
+```
+``` py
+Diagram.add_deaths(year, value)
+```
 
-**Diagram.add_births(year, value)**
-
-**Diagram.add_deaths(year, value)**
-
- 
 ### FAQ
 
 Just ask me what you need!
