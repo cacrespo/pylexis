@@ -23,7 +23,7 @@ _initial year_, _final_year_, _first_age_, _last_age_
 
 ``` py
 import pylexis
-diagram = pylexis.Diagram(1910, 1920, 0, 10)
+diagram = pylexis.Diagram(1900, 1920, 0, 10)
 ```
 
 This returns a basic diagram:
