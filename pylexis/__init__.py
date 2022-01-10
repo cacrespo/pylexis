@@ -32,6 +32,10 @@ class Diagram():
         self.titles()
 
     def titles(self, x_label="Year", y_label="Age", title="Lexis Diagram"):
+        """
+        Add title and x, y axis labels
+        """
+
         plt.xlabel(x_label)
         plt.ylabel(y_label)
         plt.title(title)
@@ -43,7 +47,6 @@ class Diagram():
         :param target: Set "age", "year" or "cohort".
         :param value: This is the value of the *target* selected.
         :param color: Color to fill.
-
         """
 
         if target == 'age':
@@ -60,10 +63,28 @@ class Diagram():
                             color=color, alpha=0.2)
 
     def add_births(self, year: int, value: int):
+        """
+        Draw number of births in a specific year.
+
+        :param year: Year.
+        :param value: Births.
+        """
+
         pad = ((9 - len(str(value))) / 9) / 2 # to center up to 9 digits
         plt.text(year + pad, 0, value)
 
     def add_deaths(self, cohort: int, year: int, age: int, value: int):
+        """
+        Draw number of deaths in a specific year for a specific cohort.
+        If the data is not consistent (for example, year of deaths < cohort year), it
+        returns an error.
+
+        :param cohort: Year of the cohort.
+        :param year: Year of deaths.
+        :param age: Age at the time of deaths. Deaths can be before or after birthdays.
+        :param value: Deaths.
+        """
+
         pad = ((4 - len(str(value))) / 4) / 2
         if (year - cohort) - age == 1:
             plt.text(year + pad,
