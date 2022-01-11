@@ -53,7 +53,7 @@ Then you have a few methods to interact with the graph:
         age: int with age at the time of deaths. Deaths can be before or after birthdays.
         value: int with the number of deaths.
 
-Here some examples:
+Here are some examples:
 
 ![](docs/images/deaths_grid.png)
 ![](docs/images/fill_grid.png)
