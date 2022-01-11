@@ -31,43 +31,32 @@ This returns a basic diagram:
 ![](docs/images/basic_grid.png)
 
 Then you have a few methods to interact with the graph:
-
-``` py
-Diagram.titles(x_label, y_label, title)
-```
-Add title and axis labels.
-
-``` py
-Diagram.lexis_fill(target, value, color)
-```
-Highlight a certain age, year or cohort in the grid.
+- **pylexis.Diagram.titles(_x_label, y_label, title_)**: Add title and axis labels.
+---
+- **pylexis.Diagram.lexis_fill(_target, value, color_)**: Highlight a certain age, year or cohort in the grid.
 
         Parameters
         ----------
         target: {'age', 'year' or 'cohort'}
         value: int with the value of the target selected.
         color: str with the colour to fill.
+---
+- **pylexis.Diagram.add_births(_year, value_)**: Draw number of births in a specific year.
+---
+- **pylexis.Diagram.add_deaths(_cohort, year, age, value_)**: Draw number of deaths in a specific year for a specific cohort.
 
-![](docs/images/fill_grid.png)
-
-``` py
-Diagram.add_births(year, value)
-```
-Draw number of births in a specific year.
-
-``` py
-Diagram.add_deaths(year, value)
-```
-Draw number of deaths in a specific year for a specific cohort.
 
         Parameters
         ----------
         cohort: Year of the cohort.
-        year: Year of deaths.
-        age: Age at the time of deaths. Deaths can be before or after birthdays.
-        value: Deaths.
+        year: int with year of deaths.
+        age: int with age at the time of deaths. Deaths can be before or after birthdays.
+        value: int with the number of deaths.
+
+Here some examples:
 
 ![](docs/images/deaths_grid.png)
+![](docs/images/fill_grid.png)
 
 ### FAQ
 Just ask me what you need!
