@@ -27,6 +27,10 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -U -r requirements-dev.txt
-      - name: Run tests
+      - name: Run pytest
         run: |
           python3 -m pytest
+      - name: Flake8
+        run: |
+          flake8 pylexis
+
