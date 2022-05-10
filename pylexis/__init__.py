@@ -11,6 +11,7 @@ represent events (such as births or deaths) that occur to individuals
 belonging to different cohorts.
 """
 
+
 class Diagram():
     """ Basic Lexis Diagram """
 
@@ -21,8 +22,7 @@ class Diagram():
         self.year_end = year_end
         self.age_start = age_start
 
-        self.fig, self.ax = plt.subplots(figsize=
-                                         (year_end - year_start,
+        self.fig, self.ax = plt.subplots(figsize = (year_end - year_start,
                                           age_end - age_start))
         self.ax.set(xlim=(year_start, year_end),
                     xticks=range(year_start, year_end+1),
@@ -47,7 +47,7 @@ class Diagram():
         plt.ylabel(y_label)
         plt.title(title)
 
-    def lexis_fill(self, target:str, value:int, color:str):
+    def lexis_fill(self, target: str, value: int, color: str):
         """
         Highlight a certain age, year or cohort in the grid.
 
@@ -65,9 +65,9 @@ class Diagram():
         if target == 'cohort':
             _range = self.year_end - value
             self.ax.fill_between((value, self.year_end),
-                            (self.age_start, _range),
-                            (self.age_start - 1, _range - 1),
-                            color=color, alpha=0.2)
+                                 (self.age_start, _range),
+                                 (self.age_start - 1, _range - 1),
+                                 color=color, alpha=0.2)
 
     def add_births(self, year: int, value: int):
         """
@@ -77,7 +77,7 @@ class Diagram():
         :param value: Births.
         """
 
-        pad = ((9 - len(str(value))) / 9) / 2 # to center up to 9 digits
+        pad = ((9 - len(str(value))) / 9) / 2  # to center up to 9 digits
         plt.text(year + pad, 0, value)
 
     def add_deaths(self, cohort: int, year: int, age: int, value: int):
@@ -98,17 +98,17 @@ class Diagram():
             plt.text(year + pad,
                      age + 0.5,
                      value,
-                     fontsize = 12)
+                     fontsize= 12)
 
         elif (year - cohort) - age == 0:
             plt.text(year + 0.5,
                      age + 0.3,
                      value,
-                     fontsize = 12)
+                     fontsize= 12)
         else:
             print(f"""Invalid data:
             cohort: {cohort}
             year: {year}
             age: {age}""")
 
-    #def load_data(self, data:list):
+    # def load_data(self, data:list):
