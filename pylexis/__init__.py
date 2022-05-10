@@ -14,20 +14,27 @@ belonging to different cohorts.
 class Diagram():
     """ Basic Lexis Diagram """
 
-    def __init__(self, year_start: int, year_end: int, age_start: int, age_end: int):
+    def __init__(self,
+                 year_start: int, year_end: int,
+                 age_start: int, age_end: int):
 
         self.year_end = year_end
         self.age_start = age_start
 
-        self.fig, self.ax = plt.subplots(figsize=(year_end - year_start, age_end - age_start))
-        self.ax.set(xlim=(year_start, year_end), xticks=range(year_start, year_end+1),
-                    ylim=(age_start, age_end), yticks=range(age_start, age_end+1))
+        self.fig, self.ax = plt.subplots(figsize=
+                                         (year_end - year_start,
+                                          age_end - age_start))
+        self.ax.set(xlim=(year_start, year_end),
+                    xticks=range(year_start, year_end+1),
+                    ylim=(age_start, age_end),
+                    yticks=range(age_start, age_end+1))
 
-        # grid
         plt.grid()
 
         for i in range(year_start - age_end, year_end):
-            plt.axline( (i, age_start), (i + 1, age_start + 1), linewidth=0.3, color='gray')
+            plt.axline((i, age_start),
+                       (i + 1, age_start + 1),
+                       linewidth=0.3, color='gray')
 
         self.titles()
 
@@ -76,12 +83,13 @@ class Diagram():
     def add_deaths(self, cohort: int, year: int, age: int, value: int):
         """
         Draw number of deaths in a specific year for a specific cohort.
-        If the data is not consistent (for example, year of deaths < cohort year), it
-        returns an error.
+        If the data is not consistent (for example, year of deaths < cohort
+        year), it returns an error.
 
         :param cohort: Year of the cohort.
         :param year: Year of deaths.
-        :param age: Age at the time of deaths. Deaths can be before or after birthdays.
+        :param age: Age at the time of deaths. Deaths can be before or after
+        birthdays.
         :param value: Deaths.
         """
 
@@ -102,6 +110,5 @@ class Diagram():
             cohort: {cohort}
             year: {year}
             age: {age}""")
-
 
     #def load_data(self, data:list):
