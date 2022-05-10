@@ -22,8 +22,8 @@ class Diagram():
         self.year_end = year_end
         self.age_start = age_start
 
-        self.fig, self.ax = plt.subplots(figsize = (year_end - year_start,
-                                          age_end - age_start))
+        self.fig, self.ax = plt.subplots(figsize=(year_end - year_start,
+                                                  age_end - age_start))
         self.ax.set(xlim=(year_start, year_end),
                     xticks=range(year_start, year_end+1),
                     ylim=(age_start, age_end),
@@ -98,13 +98,13 @@ class Diagram():
             plt.text(year + pad,
                      age + 0.5,
                      value,
-                     fontsize= 12)
+                     fontsize=12)
 
         elif (year - cohort) - age == 0:
             plt.text(year + 0.5,
                      age + 0.3,
                      value,
-                     fontsize= 12)
+                     fontsize=12)
         else:
             print(f"""Invalid data:
             cohort: {cohort}
