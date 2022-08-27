@@ -1,26 +1,23 @@
 import setuptools
 
-with open("README.md", "r") as fh:
-    long_description = fh.read()
+with open("requirements.txt", "rt") as fh:
+    install_requires = [x.strip() for x in fh]
 
 setuptools.setup(
     name="pylexis",
-    version="0.0.1",
+    version="0.1.1",
     author="Carlos A. Crespo",
     author_email="lvccrespo@gmail.com",
     description="Quickly and easily draw basic Lexis diagrams",
-    long_description=long_description,
+    long_description=open("README.md", "r", encoding="utf8").read(),
     long_description_content_type="text/markdown",
     url="https://github.com/cacrespo/pylexis",
-    packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=[
-        "matplotlib",
-    ],
-    entry_points={"console_scripts": ["pylexis=pylexis:main"]},
+    install_requires=install_requires,
     python_requires=">=3.6",
+    packages=['pylexis']
 )
