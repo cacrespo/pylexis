@@ -5,7 +5,7 @@ with open("requirements.txt", "rt") as fh:
 
 setuptools.setup(
     name="pylexis",
-    version="0.1.1",
+    version="0.1.2",
     author="Carlos A. Crespo",
     author_email="lvccrespo@gmail.com",
     description="Quickly and easily draw basic Lexis diagrams",
