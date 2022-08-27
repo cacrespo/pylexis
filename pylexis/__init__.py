@@ -12,6 +12,9 @@ belonging to different cohorts.
 """
 
 
+__version__ = "0.1.2"
+
+
 class Diagram():
     """ Basic Lexis Diagram """
 
