@@ -1,5 +1,6 @@
 """Common functionality for inputs."""
 
+
 def check_range_grid(start, end, input):
     """Validates that the input value are between the maximum and minimum
     possible."""

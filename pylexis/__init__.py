@@ -116,7 +116,7 @@ class Diagram():
                      value,
                      fontsize=12)
         else:
-            message=f"""Invalid Data:
+            message = f"""Invalid Data:
             cohort: {cohort}
             year: {year}
             age: {age}"""
