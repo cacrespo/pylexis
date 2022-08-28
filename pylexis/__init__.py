@@ -116,10 +116,10 @@ class Diagram():
                      value,
                      fontsize=12)
         else:
-            print(f"""Invalid Data:
-            add_deaths
+            message=f"""Invalid Data:
             cohort: {cohort}
             year: {year}
-            age: {age}""")
+            age: {age}"""
+            raise ValueError(message)
 
     # def load_data(self, data:list):
