@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 
+from pylexis.common import check_range_grid
 
 __doc__ = """
 PyLexis - A tool to easily plot Lexis Diagrams within Python.
@@ -12,6 +13,9 @@ belonging to different cohorts.
 """
 
 
+__version__ = "0.1.2"
+
+
 class Diagram():
     """ Basic Lexis Diagram """
 
@@ -19,7 +23,9 @@ class Diagram():
                  year_start: int, year_end: int,
                  age_start: int, age_end: int):
 
+        self.year_start = year_start
         self.year_end = year_end
+        self.age_end = age_end
         self.age_start = age_start
 
         self.fig, self.ax = plt.subplots(figsize=(year_end - year_start,
@@ -77,6 +83,8 @@ class Diagram():
         :param value: Births.
         """
 
+        check_range_grid(self.year_start, self.year_end, year)
+
         pad = ((9 - len(str(value))) / 9) / 2  # to center up to 9 digits
         plt.text(year + pad, 0, value)
 
@@ -93,6 +101,8 @@ class Diagram():
         :param value: Deaths.
         """
 
+        check_range_grid(self.year_start, self.year_end, year)
+
         pad = ((4 - len(str(value))) / 4) / 2
         if (year - cohort) - age == 1:
             plt.text(year + pad,
@@ -106,9 +116,10 @@ class Diagram():
                      value,
                      fontsize=12)
         else:
-            print(f"""Invalid data:
+            message = f"""Invalid Data:
             cohort: {cohort}
             year: {year}
-            age: {age}""")
+            age: {age}"""
+            raise ValueError(message)
 
     # def load_data(self, data:list):
