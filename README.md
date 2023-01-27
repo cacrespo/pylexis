@@ -1,12 +1,12 @@
 # PyLexis
 
-`PyLexis` is a tool to easily plot Lexis Diagrams within Python. It is based on [`matplotlib`](https://matplotlib.org/) and inspirated in 
+`PyLexis` is a tool to easily plot Lexis Diagrams within Python. It is based on [`matplotlib`](https://matplotlib.org/) and inspirated in
 [LexisPlotR](https://github.com/ottlngr/LexisPlotR).
 
 ### What is a Lexis Diagram?
 
-> In demography a Lexis diagram (named after economist and social scientist Wilhelm Lexis) is a two dimensional diagram that is used to represent events 
-(such as births or deaths) that occur to individuals belonging to different cohorts. Calendar time is usually represented on the horizontal axis, while 
+> In demography a Lexis diagram (named after economist and social scientist Wilhelm Lexis) is a two dimensional diagram that is used to represent events
+(such as births or deaths) that occur to individuals belonging to different cohorts. Calendar time is usually represented on the horizontal axis, while
 age is represented on the vertical axis. (<https://en.wikipedia.org/wiki/Lexis_diagram>)
 
 ### Installation
@@ -30,16 +30,30 @@ This returns a basic diagram:
 
 ![](docs/images/basic_grid.png)
 
+
 Then you have a few methods to interact with the graph:
+
+#### Styling
+- **pylexis.Diagram.set_font(_size, weight_)**: Set font size and weight.
+---
+- **pylexis.Diagram.set_aspect(_aspect_)**: Set aspect ratio of the grid.
+
+        Parameters
+        ----------
+        aspect: str or float with aspect ratio of the grid. Use 'square' for square cells, 'auto' for equal sized steps on both axes, or a float for a custom ratio.
+---
+
+#### Graphing Data
 - **pylexis.Diagram.titles(_x_label, y_label, title_)**: Add title and axis labels.
 ---
-- **pylexis.Diagram.lexis_fill(_target, value, color_)**: Highlight a certain age, year or cohort in the grid.
+- **pylexis.Diagram.lexis_fill(_target, value, color, alpha_)**: Highlight a certain age, year or cohort in the grid.
 
         Parameters
         ----------
         target: {'age', 'year' or 'cohort'}
         value: int with the value of the target selected.
-        color: str with the colour to fill.
+        color: str with the colour to fill. Use 'random' to fill with a random color.
+        alpha: float with the transparency of the fill. 0 is transparent, 1 is opaque.
 ---
 - **pylexis.Diagram.add_births(_year, value_)**: Draw number of births in a specific year.
 ---
@@ -52,11 +66,62 @@ Then you have a few methods to interact with the graph:
         year: int with year of deaths.
         age: int with age at the time of deaths. Deaths can be before or after birthdays.
         value: int with the number of deaths.
+---
+- **pylexis.Diagram.add_data_point(_year, age, value_)**: Draw a data point in the grid.
 
-Here are some examples:
+        Parameters
+        ----------
+        year: int with year of the data point.
+        age: int with age of the data point.
+        value: string-castable value of the data point.
+---
+- **pylexis.Diagram.add_data(_year, age, values_)**: Add a list of data points to the Lexis Diagram.
 
+                Parameters
+                ----------
+                year: list[int] with years of the data points.
+                age: list[int] with age of the data points.
+                values: list of string-castable values of the data points.
+---
+- **pylexis.Diagram.add_data_unsafe(_year, age, values_)**: Add a list of data points to the Lexis Diagram without checking if the data fits in the grid.
+
+        Parameters
+        ----------
+        year: list[int] with years of the data points.
+        age: list[int] with age of the data points.
+        values: list of string-castable values of the data points.
+---
+- **pylexis.Diagram.load_data(_data, xaxis, yaxis, value_)**: Load data from a list of dictionaries.
+
+        Parameters
+        ----------
+        data: list of dictionaries with the data to plot.
+        xaxis: str with the key of the dictionary that contains the x-axis data.
+        yaxis: str with the key of the dictionary that contains the y-axis data.
+        value: str with the key of the dictionary that contains the value of the data point.
+---
+- **pylexis.Diagram.save(_filename_)**: Save the diagram to a file.
+
+        Parameters
+        ----------
+        filename: str with the name of the file to save.
+
+### Examples
+
+#### Basic Diagram
 ![](docs/images/deaths_grid.png)
 ![](docs/images/fill_grid.png)
+
+#### Add Data Points
+![](docs/images/add_data.png)
+
+#### Interface with Pandas
+![](docs/images/pandas.png)
+
+#### Different Aspect Ratios
+![](docs/images/aspect_1_2.png)
+![](docs/images/aspect_1.png)
+
 
 ### FAQ
 Just ask me what you need!
