@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
-# from pylexis.common import check_range_grid
 from common import check_range_grid
 
 __doc__ = """
