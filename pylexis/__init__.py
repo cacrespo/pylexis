@@ -74,7 +74,7 @@ class Diagram():
             color = self.__random_color()
 
         if target == 'age':
-            self.ax.axhspan(value, value + 1, alpha=alpha if alpha else 0.5, color=color)
+            self.ax.axhspan(value, value + 1, alpha=alpha, color=color)
 
         if target == 'year':
             self.ax.axvspan(value, value + 1, alpha=alpha if alpha else 0.5, color=color)
