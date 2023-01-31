@@ -84,7 +84,7 @@ class Diagram():
             self.ax.fill_between((value, self.year_end),
                                  (self.age_start, _range),
                                  (self.age_start - 1, _range - 1),
-                                 color=color, alpha=alpha if alpha else 0.2)
+                                 color=color, alpha=alpha)
 
     def add_births(self, year: int, value: int):
         """
