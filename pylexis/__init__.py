@@ -61,7 +61,7 @@ class Diagram():
         r = lambda: randint(0,255)
         return '#%02X%02X%02X' % (r(),r(),r())
 
-    def lexis_fill(self, target: str, value: int, color: str, alpha: float = None):
+    def lexis_fill(self, target: str, value: int, color: str, alpha: float = 0.5):
         """
         Highlight a certain age, year or cohort in the grid.
 
