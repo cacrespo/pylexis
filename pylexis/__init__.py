@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
-import matplotlib as mpl
 
-from common import check_range_grid
+from pylexis.common import check_range_grid
 
 __doc__ = """
 PyLexis - A tool to easily plot Lexis Diagrams within Python.
@@ -59,10 +58,17 @@ class Diagram():
 
     def __random_color(self):
         from random import randint
-        r = lambda: randint(0,255)
-        return '#%02X%02X%02X' % (r(),r(),r())
 
-    def lexis_fill(self, target: str, value: int, color: str, alpha: float = 0.5):
+        def r():
+            return randint(0, 255)
+
+        return '#%02X%02X%02X' % (r(), r(), r())
+
+    def lexis_fill(self,
+                   target: str,
+                   value: int,
+                   color: str,
+                   alpha: float = 0.5):
         """
         Highlight a certain age, year or cohort in the grid.
 
@@ -106,8 +112,8 @@ class Diagram():
         age: int,
         value: int,
         safe: bool = True,
-        pad_year: str or float or function = "default",
-        pad_age: str or float or function = "default"
+        pad_year: str or float or callable = "default",
+        pad_age: str or float or callable = "default"
     ):
         """
         Private method to plot a data point in the grid.
@@ -116,8 +122,10 @@ class Diagram():
         :param age: Age.
         :param value: Value to be added.
         :param safe: Check if the coordinates are within the grid.
-        :param padding: Padding to center the value in the grid: "default" or float or some function on string.
-        :param pad_age: Padding to center the value in the grid: "default" or float or some function on string.
+        :param padding: Padding to center the value in the grid: "default" or
+        float or some function on string.
+        :param pad_age: Padding to center the value in the grid: "default" or
+        float or some function on string.
         """
 
         # Check coordinates
@@ -151,7 +159,7 @@ class Diagram():
             fontweight=self.fontweight
         )
 
-    def add_deaths(self, cohort: int, year: int, age: int, value: int):
+    def add_death(self, cohort: int, year: int, age: int, value: int):
         """
         Draw number of deaths in a specific year for a specific cohort.
         If the data is not consistent (for example, year of deaths < cohort
@@ -198,19 +206,27 @@ class Diagram():
 
         self.__plot_by_coords(year, age, value, pad_year=0.5, pad_age=0.5)
 
-    def add_data(self, year: list[int], age: list[int], values: list[any]):
+    def add_data(self,
+                 cohort: list[int],
+                 year: list[int],
+                 age: list[int],
+                 values: list[any]):
         """
         Add a list of data points to the Lexis Diagram.
 
+        :param cohort: Year of the cohort.
         :param year: List of years.
         :param age: List of ages.
         :param values: List of values to be added.
         """
 
-        for y, a, value in zip(year, age, values):
-            self.__plot_by_coords(y, a, value, pad_year=0.5, pad_age="default")
+        for cohort, year, age, value in zip(cohort, year, age, values):
+            self.add_death(cohort, year, age, value)
 
-    def add_data_unsafe(self, year: list[int], age: list[int], values: list[any]):
+    def add_data_unsafe(self,
+                        year: list[int],
+                        age: list[int],
+                        values: list[any]):
         """
         Add a list of data points to the Lexis Diagram. Skips the check for
         the range of the grid.
@@ -223,7 +239,7 @@ class Diagram():
         for y, a, value in zip(year, age, values):
             self.add_text(y, a, value)
 
-    def load_data(self, data:list, xaxis: str, yaxis: str, value: str):
+    def load_data(self, data: list, xaxis: str, yaxis: str, value: str):
         """
         Load data from a list of dictionaries.
 
@@ -234,24 +250,32 @@ class Diagram():
 
         for row in data:
             try:
-                self.add_text(year=int(row[xaxis]), age=int(row[yaxis]), value=row[value])
+                self.add_text(year=int(row[xaxis]), age=int(
+                    row[yaxis]), value=row[value])
             except ValueError:
                 raise ValueError("Invalid data cannot be casted to int.")
 
-    def set_font(self, size: int = 12, weight: str = 'regular', update_axis: bool = True):
+    def set_font(self,
+                 size: int = 12,
+                 weight: str = 'regular',
+                 update_axis: bool = True):
         """
         Set the font size and weight.
         Use this to update the font size before plotting.
 
         :param size: Font size in points (default 12, range[1-1000])
-        :param weight: Font weight (default regular, options: regular, bold, heavy, light, book, medium)
+        :param weight: Font weight (default regular, options: regular, bold,
+        heavy, light, book, medium)
         """
 
         # Gaurds
         if size < 1 or size > 1000:
             raise ValueError("Font size must be between 1 and 1000.")
-        elif weight not in ['regular', 'bold', 'heavy', 'light', 'book', 'medium']:
-            raise ValueError("Font weight must be one of the following: regular, bold, heavy, light, book, medium.")
+        elif weight not in ['regular', 'bold', 'heavy', 'light', 'book',
+                            'medium']:
+            raise ValueError(
+                "Font weight must be one of the following: regular, bold,"
+                "heavy, light, book, medium.")
 
         # Update value
         self.fontsize = size
@@ -264,10 +288,12 @@ class Diagram():
     def set_font_retroactively(self, size: int = 12, weight: str = 'regular'):
         """
         Set the font to a retroactively.
-        Use this to update the font size after plotting and standardize the graph.
+        Use this to update the font size after plotting and standardize the
+        graph.
 
         :param size: Font size in points (default 12, range[1-1000])
-        :param weight: Font weight (default regular, options: regular, bold, heavy, light, book, medium)
+        :param weight: Font weight (default regular, options: regular, bold,
+        heavy, light, book, medium)
         """
 
         # Throwable
