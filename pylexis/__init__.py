@@ -159,7 +159,7 @@ class Diagram():
             fontweight=self.fontweight
         )
 
-    def add_death(self, cohort: int, year: int, age: int, value: int):
+    def add_deaths(self, cohort: int, year: int, age: int, value: int):
         """
         Draw number of deaths in a specific year for a specific cohort.
         If the data is not consistent (for example, year of deaths < cohort
@@ -221,7 +221,7 @@ class Diagram():
         """
 
         for cohort, year, age, value in zip(cohort, year, age, values):
-            self.add_death(cohort, year, age, value)
+            self.add_deaths(cohort, year, age, value)
 
     def add_data_unsafe(self,
                         year: list[int],
