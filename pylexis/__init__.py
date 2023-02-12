@@ -13,7 +13,7 @@ belonging to different cohorts.
 """
 
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 
 class Diagram():
@@ -55,6 +55,75 @@ class Diagram():
         plt.xlabel(x_label)
         plt.ylabel(y_label)
         plt.title(title)
+
+    def set_font(self,
+                 size: int = 12,
+                 weight: str = 'regular',
+                 update_axis: bool = True):
+        """
+        Set the font size and weight.
+        Use this to update the font size before plotting.
+
+        :param size: Font size in points (default 12, range[1-1000])
+        :param weight: Font weight (default regular, options: regular, bold,
+        heavy, light, book, medium)
+        """
+
+        # Gaurds
+        if size < 1 or size > 1000:
+            raise ValueError("Font size must be between 1 and 1000.")
+        elif weight not in ['regular', 'bold', 'heavy', 'light', 'book',
+                            'medium']:
+            raise ValueError(
+                "Font weight must be one of the following: light, regular, "
+                "book, medium, bold, heavy.")
+
+        # Update value
+        self.fontsize = size
+        self.fontweight = weight
+
+        # Axes font
+        if update_axis:
+            self.ax.tick_params(labelsize=self.fontsize)
+
+    def set_font_retroactively(self, size: int = 12, weight: str = 'regular'):
+        """
+        Set the font to a retroactively.
+        Use this to update the font size after plotting and standardize the
+        graph.
+
+        :param size: Font size in points (default 12, range[1-1000])
+        :param weight: Font weight (default regular, options: regular, bold,
+        heavy, light, book, medium)
+        """
+
+        # Throwable
+        self.set_font(size, weight)
+
+        # Update the text already rendered on the plot
+        for text in self.ax.texts:
+            text.set_fontsize(self.fontsize)
+            text.set_fontweight(self.fontweight)
+
+    def set_aspect(self, aspect: float or str = 'auto'):
+        """
+        Set the aspect ratio of the grid.
+
+        :param aspect: Aspect ratio.
+        """
+        if aspect == 'auto':
+            self.ax.set_aspect(aspect)
+        elif aspect == 'equal':
+            self.ax.set_aspect(aspect)
+        elif aspect == 'square':
+            self.set_aspect(1.0)
+        elif type(aspect) == float or type(aspect) == int:
+            x_range = self.year_end - self.year_start
+            y_range = self.age_end - self.age_start
+            ratio = x_range / y_range
+            self.ax.set_aspect(aspect * ratio)
+        else:
+            raise ValueError("Invalid aspect ratio.")
 
     def __random_color(self):
         from random import randint
@@ -238,91 +307,6 @@ class Diagram():
 
         for y, a, value in zip(year, age, values):
             self.add_text(y, a, value)
-
-    def load_data(self, data: list, xaxis: str, yaxis: str, value: str):
-        """
-        Load data from a list of dictionaries.
-
-        :param data: List of dictionaries.
-        :param xaxis: Name of the key for the x-axis.
-        :param yaxis: Name of the key for the y-axis.
-        """
-
-        for row in data:
-            try:
-                self.add_text(year=int(row[xaxis]), age=int(
-                    row[yaxis]), value=row[value])
-            except ValueError:
-                raise ValueError("Invalid data cannot be casted to int.")
-
-    def set_font(self,
-                 size: int = 12,
-                 weight: str = 'regular',
-                 update_axis: bool = True):
-        """
-        Set the font size and weight.
-        Use this to update the font size before plotting.
-
-        :param size: Font size in points (default 12, range[1-1000])
-        :param weight: Font weight (default regular, options: regular, bold,
-        heavy, light, book, medium)
-        """
-
-        # Gaurds
-        if size < 1 or size > 1000:
-            raise ValueError("Font size must be between 1 and 1000.")
-        elif weight not in ['regular', 'bold', 'heavy', 'light', 'book',
-                            'medium']:
-            raise ValueError(
-                "Font weight must be one of the following: regular, bold,"
-                "heavy, light, book, medium.")
-
-        # Update value
-        self.fontsize = size
-        self.fontweight = weight
-
-        # Axes font
-        if update_axis:
-            self.ax.tick_params(labelsize=self.fontsize)
-
-    def set_font_retroactively(self, size: int = 12, weight: str = 'regular'):
-        """
-        Set the font to a retroactively.
-        Use this to update the font size after plotting and standardize the
-        graph.
-
-        :param size: Font size in points (default 12, range[1-1000])
-        :param weight: Font weight (default regular, options: regular, bold,
-        heavy, light, book, medium)
-        """
-
-        # Throwable
-        self.set_font(size, weight)
-
-        # Update the text already rendered on the plot
-        for text in self.ax.texts:
-            text.set_fontsize(self.fontsize)
-            text.set_fontweight(self.fontweight)
-
-    def set_aspect(self, aspect: float or str = 'auto'):
-        """
-        Set the aspect ratio of the grid.
-
-        :param aspect: Aspect ratio.
-        """
-        if aspect == 'auto':
-            self.ax.set_aspect(aspect)
-        elif aspect == 'equal':
-            self.ax.set_aspect(aspect)
-        elif aspect == 'square':
-            self.set_aspect(1.0)
-        elif type(aspect) == float or type(aspect) == int:
-            x_range = self.year_end - self.year_start
-            y_range = self.age_end - self.age_start
-            ratio = x_range / y_range
-            self.ax.set_aspect(aspect * ratio)
-        else:
-            raise ValueError("Invalid aspect ratio.")
 
     def save_image(self, name: str):
         """
