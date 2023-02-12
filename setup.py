@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name="pylexis",
-    version="0.1.2",
+    version="0.1.3",
     author="Carlos A. Crespo",
     author_email="lvccrespo@gmail.com",
     description="Quickly and easily draw basic Lexis diagrams",
