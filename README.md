@@ -23,7 +23,7 @@ _initial year_, _final_year_, _first_age_, _last_age_
 
 ``` py
 import pylexis
-diagram = pylexis.Diagram(1900, 1920, 0, 10)
+diagram = pylexis.Diagram(1900, 1910, 0, 10)
 ```
 
 This returns a basic diagram:
@@ -35,17 +35,24 @@ Then you have a few methods to interact with the graph:
 
 #### Styling
 - **pylexis.Diagram.set_font(_size, weight_)**: Set font size and weight.
----
+
+        Parameters
+        ----------
+        size: int with font size in points (default 12, range[1-1000]).
+        weight: str with font weight {'light', 'regular', 'book', 'medium', 'bold', 'heavy'}.
+
+- **pylexis.Diagram.set_font_retroactively(_size, weight_)**: Idem _set_font()_. Use this to update the font after plotting and standardize the graph.
+
 - **pylexis.Diagram.set_aspect(_aspect_)**: Set aspect ratio of the grid.
 
         Parameters
         ----------
         aspect: str or float with aspect ratio of the grid. Use 'square' for square cells, 'auto' for equal sized steps on both axes, or a float for a custom ratio.
----
 
+---
 #### Graphing Data
 - **pylexis.Diagram.titles(_x_label, y_label, title_)**: Add title and axis labels.
----
+
 - **pylexis.Diagram.lexis_fill(_target, value, color, alpha_)**: Highlight a certain age, year or cohort in the grid.
 
         Parameters
@@ -54,11 +61,10 @@ Then you have a few methods to interact with the graph:
         value: int with the value of the target selected.
         color: str with the colour to fill. Use 'random' to fill with a random color.
         alpha: float with the transparency of the fill. 0 is transparent, 1 is opaque.
----
-- **pylexis.Diagram.add_births(_year, value_)**: Draw number of births in a specific year.
----
-- **pylexis.Diagram.add_deaths(_cohort, year, age, value_)**: Draw number of deaths in a specific year for a specific cohort.
 
+- **pylexis.Diagram.add_births(_year, value_)**: Draw number of births in a specific year.
+
+- **pylexis.Diagram.add_deaths(_cohort, year, age, value_)**: Draw number of deaths in a specific year for a specific cohort.
 
         Parameters
         ----------
@@ -66,24 +72,25 @@ Then you have a few methods to interact with the graph:
         year: int with year of deaths.
         age: int with age at the time of deaths. Deaths can be before or after birthdays.
         value: int with the number of deaths.
----
-- **pylexis.Diagram.add_data_point(_year, age, value_)**: Draw a data point in the grid.
+
+- **pylexis.Diagram.add_text(_year, age, value_)**: Draw a free text in the grid.
 
         Parameters
         ----------
-        year: int with year of the data point.
-        age: int with age of the data point.
-        value: string-castable value of the data point.
+        year: int with year of the text point.
+        age: int with age of the text point.
+        value: string-castable value of the text point.
 ---
-- **pylexis.Diagram.add_data(_year, age, values_)**: Add a list of data points to the Lexis Diagram.
+- **pylexis.Diagram.add_data(_cohort, year, age, values_)**: Add a list of data points to the Lexis Diagram.
 
-                Parameters
-                ----------
-                year: list[int] with years of the data points.
-                age: list[int] with age of the data points.
-                values: list of string-castable values of the data points.
+        Parameters
+        ----------
+        cohort: list[int] with year of the cohorts 
+        year: list[int] with years of deaths of each data points.
+        age: list[int] with age of each data points.
+        values: list of string-castable values of each data points.
 ---
-- **pylexis.Diagram.add_data_unsafe(_year, age, values_)**: Add a list of data points to the Lexis Diagram without checking if the data fits in the grid.
+- **pylexis.Diagram.add_data_unsafe(_year, age, values_)**: Idem _add_data()_ without checking if the data fits in the grid.
 
         Parameters
         ----------
@@ -91,16 +98,8 @@ Then you have a few methods to interact with the graph:
         age: list[int] with age of the data points.
         values: list of string-castable values of the data points.
 ---
-- **pylexis.Diagram.load_data(_data, xaxis, yaxis, value_)**: Load data from a list of dictionaries.
-
-        Parameters
-        ----------
-        data: list of dictionaries with the data to plot.
-        xaxis: str with the key of the dictionary that contains the x-axis data.
-        yaxis: str with the key of the dictionary that contains the y-axis data.
-        value: str with the key of the dictionary that contains the value of the data point.
----
-- **pylexis.Diagram.save(_filename_)**: Save the diagram to a file.
+#### Export Data
+- **pylexis.Diagram.save(_filename_)**: Save the Lexis Diagram as an image file.
 
         Parameters
         ----------
@@ -112,16 +111,11 @@ Then you have a few methods to interact with the graph:
 ![](docs/images/deaths_grid.png)
 ![](docs/images/fill_grid.png)
 
-#### Add Data Points
+#### Add Data Points and Texts
 ![](docs/images/add_data.png)
 
-#### Interface with Pandas
-![](docs/images/pandas.png)
-
-#### Different Aspect Ratios
-![](docs/images/aspect_1_2.png)
-![](docs/images/aspect_1.png)
-
+### How to contribute to the project?
+Please check the [how to contribute](CONTRIBUTING.md) instructions.
 
 ### FAQ
 Just ask me what you need!
