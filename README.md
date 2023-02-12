@@ -80,7 +80,7 @@ Then you have a few methods to interact with the graph:
         year: int with year of the text point.
         age: int with age of the text point.
         value: string-castable value of the text point.
----
+
 - **pylexis.Diagram.add_data(_cohort, year, age, values_)**: Add a list of data points to the Lexis Diagram.
 
         Parameters
@@ -89,7 +89,7 @@ Then you have a few methods to interact with the graph:
         year: list[int] with years of deaths of each data points.
         age: list[int] with age of each data points.
         values: list of string-castable values of each data points.
----
+
 - **pylexis.Diagram.add_data_unsafe(_year, age, values_)**: Idem _add_data()_ without checking if the data fits in the grid.
 
         Parameters
